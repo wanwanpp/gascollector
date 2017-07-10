@@ -36,7 +36,7 @@ public class GasEventService {
         topic = hazelcastInstance.getTopic(topicName);
         map = hazelcastInstance.getMap("tenant");
 //delete this line before online 
-        mockHazelcastMap();
+//        mockHazelcastMap();
 
     }
 

@@ -25,7 +25,6 @@ public class GasEventProcessor implements MessageListener<GasHazelcast> {
      * @see com.hazelcast.core.MessageListener#onMessage(com.hazelcast.core.Message)
      */
     @Override
-    // TODO: 2017/7/10 0010 添加多线程，使用ExecutorService
     public void onMessage(Message<GasHazelcast> arg0) {
         GasHazelcast hazelcastEvent = arg0.getMessageObject();
         //display(hazelcastEvent);
