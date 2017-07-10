@@ -60,8 +60,12 @@ public class InfluxdbService {
     }
 
     //query measurements
-    public List<GasEvent> query(String tenant, String hardwareId, Timestamp begin, Timestamp end) {
-        String command = "select * from measurement" + tenant.trim() + "  where hardwareId='" + hardwareId + "' and time>'" + begin + "' and time<'" + end + "'";
+//    public List<GasEvent> query(String tenant, String hardwareId, Timestamp begin, Timestamp end) {
+    public List<GasEvent> query(String tenant, String hardwareId, long begin, long end) {
+        begin*=1000000;
+        end*=1000000;
+//        String command = "select * from measurement" + tenant.trim() + "  where hardwareId='" + hardwareId + "' and time>'" + begin + "' and time<'" + end + "'";
+        String command = "select * from measurement" + tenant.trim() + "  where hardwareId='" + hardwareId + "' and time>" + begin + " and time<" + end;
         ;
 
         // String command="select * from measurement99"+"  where hardwareId='ID2'";//+hardwareId+"'";
@@ -82,7 +86,7 @@ public class InfluxdbService {
                 String splitStr = (String) objList.get(i).get(0);
                 splitStr = splitStr.replace('T', ' ');
                 splitStr = splitStr.substring(0, splitStr.length() - 1);
-                System.out.println("Time str i s:" + splitStr);
+                System.out.println("Time str is:" + splitStr);
                 Timestamp timestamp = Timestamp.valueOf(splitStr);
                 long pointtime = timestamp.getTime();
                 System.out.println("time is " + pointtime);

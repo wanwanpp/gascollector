@@ -59,7 +59,8 @@ public class GasEventService {
     }
 
     //service for query history oof measurements
-    public List<GasEvent> query(String hardwareId, Timestamp begin, Timestamp end) {
+//    public List<GasEvent> query(String hardwareId, Timestamp begin, Timestamp end) {
+    public List<GasEvent> query(String hardwareId, long begin, long end) {
         String tenant = map.get(hardwareId);
         System.out.println("\n========================================================The tenant id is" + tenant);
         return influxdbService.query(tenant, hardwareId, begin, end);

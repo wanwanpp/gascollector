@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,12 +34,10 @@ public class EventController {
     @RequestMapping(path = "/query", method = {RequestMethod.POST})
     public List<GasEvent> queryEvents(
             @RequestParam(value = "hardwareId", required = true) String hardwareId,
-            @RequestParam(value = "begin", required = true) String begin, @RequestParam(value = "begin", required = true) String end) throws Exception {
-        Timestamp bb=new Timestamp(Long.parseLong(begin));
-        Timestamp ee=new Timestamp(Long.parseLong(end)); 
-        System.out.println("The begin time i s"+bb+" and end is "+ee);
-        List<GasEvent> events = service.query(hardwareId, bb, ee);
-        System.out.println("The query result size is "+events.size());
+            @RequestParam(value = "begin", required = true) long begin, @RequestParam(value = "end", required = true) long end) throws Exception {
+
+        List<GasEvent> events = service.query(hardwareId, begin, end);
+
         return events;
     }
 
