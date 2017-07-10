@@ -22,8 +22,8 @@ import org.springframework.messaging.MessagingException;
 //import org.springframework.integration.Message;
 //import org.springframework.integration.MessagingException;
 
-@Configuration
-@EnableConfigurationProperties(MqttProperties.class)
+//@Configuration
+//@EnableConfigurationProperties(MqttProperties.class)
 public class MqttConfiguration {
 
     @Autowired
