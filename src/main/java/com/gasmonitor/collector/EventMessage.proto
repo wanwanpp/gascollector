@@ -1,12 +1,12 @@
 option optimize_for = LITE_RUNTIME;
-option java_package = "com.gasmonitor.collector"; 
-option java_outer_classname = "EventProbuf"; 
+option java_package = "com.gasmonitor.collector";
+option java_outer_classname = "EventProbuf";
 message EventMessage {
-	required string hardwareId = 1;
-      optional double temperature = 2;
-      optional double pressure= 3;
-      optional double standard = 4;
-      optional double running = 5;
-      optional double summary = 6;
-      optional uint64  pointtime = 7;
+    required string hardwareId = 1;
+    optional double temperature = 2;
+    optional double pressure = 3;
+    optional double standard = 4;
+    optional double running = 5;
+    optional double summary = 6;
+    optional uint64 pointtime = 7;
 }

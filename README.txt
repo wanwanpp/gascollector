@@ -1,27 +1,27 @@
-Ò»¡¢ÔËĞĞÓë±àÒë»·¾³
-JDK1.8 tomcat8 influxdb 8080¶Ë¿Ú²»±»ÆäËûÓ¦ÓÃÕ¼ÓÃ¡£Èç¹û²ÉÓÃmqttÍ¨Ñ¶»¹Ğè°²×°apollo.ÔÚÅäÖÃÎÄ¼şÖĞ½«ÏàÓ¦ÊôĞÔÉèÖÃ¡£
-¶ş¡¢±àÒëÓëÔËĞĞ
-1.ÔÚÏîÄ¿ÎÄ¼şÏÂÔËĞĞmvn clean install
-2.³É¹¦ºó½«targetÄ¿Â¼ÏÂµÄgasmonitor-0.0.1-SNAPSHOT.war¸Ä³Égasmonitor.war
-3¡£½«gasmonitor.war¿½±´µ½tomcat webappsÄ¿Â¼ÏÂ£¬È»ºóÆô¶¯tomcat
-Èı¡¢ÏµÍ³¼Ü¹¹½éÉÜ
-1¡¢ÏµÍ³Ö÷ÒªÎªÈ¼ÆøÁ÷Á¿¼ÆÉÏ´«Êı¾İÖĞ¼ä¼ş¡£ÏµÍ³²ÉÓÃRESTFULºÍMQTTÁ½ÖÖÍ¨ĞÅĞ­Òé¡£
-2¡¢²ÉÓÃRESTFULĞ­ÒéÔÚÇ°¶ÎÊ¹ÓÃpost·½·¨ÉÏ´«Êı¾İ£¬ÉÏ´«Ê±½«HeaderµÄcontent-typeÉèÖÃ³Éapplication/json,jsonÄÚÈİÈçÏÂ£º
-    "hardwareId":"Éè±¸±àºÅ",
-    "temperatur":"²âµãÎÂ¶È",
-    "pressure":"²âµãÑ¹Á¦",
-   "standard":"±ê¿öÁ÷Á¿",
-   "running":"¹¤¿öÁ÷Á¿",
-   "summary":"×Ü¼ÆÁ÷Á¿",
-   "pointtime":"²âµãÊ±¼ä´Á"
+ä¸€ã€è¿è¡Œä¸ç¼–è¯‘ç¯å¢ƒ
+JDK1.8 tomcat8 influxdb 8080ç«¯å£ä¸è¢«å…¶ä»–åº”ç”¨å ç”¨ã€‚å¦‚æœé‡‡ç”¨mqtté€šè®¯è¿˜éœ€å®‰è£…apollo.åœ¨é…ç½®æ–‡ä»¶ä¸­å°†ç›¸åº”å±æ€§è®¾ç½®ã€‚
+äºŒã€ç¼–è¯‘ä¸è¿è¡Œ
+1.åœ¨é¡¹ç›®æ–‡ä»¶ä¸‹è¿è¡Œmvn clean install
+2.æˆåŠŸåå°†targetç›®å½•ä¸‹çš„gasmonitor-0.0.1-SNAPSHOT.waræ”¹æˆgasmonitor.war
+3ã€‚å°†gasmonitor.waræ‹·è´åˆ°tomcat webappsç›®å½•ä¸‹ï¼Œç„¶åå¯åŠ¨tomcat
+ä¸‰ã€ç³»ç»Ÿæ¶æ„ä»‹ç»
+1ã€ç³»ç»Ÿä¸»è¦ä¸ºç‡ƒæ°”æµé‡è®¡ä¸Šä¼ æ•°æ®ä¸­é—´ä»¶ã€‚ç³»ç»Ÿé‡‡ç”¨RESTFULå’ŒMQTTä¸¤ç§é€šä¿¡åè®®ã€‚
+2ã€é‡‡ç”¨RESTFULåè®®åœ¨å‰æ®µä½¿ç”¨postæ–¹æ³•ä¸Šä¼ æ•°æ®ï¼Œä¸Šä¼ æ—¶å°†Headerçš„content-typeè®¾ç½®æˆapplication/json,jsonå†…å®¹å¦‚ä¸‹ï¼š
+    "hardwareId":"è®¾å¤‡ç¼–å·",
+    "temperatur":"æµ‹ç‚¹æ¸©åº¦",
+    "pressure":"æµ‹ç‚¹å‹åŠ›",
+   "standard":"æ ‡å†µæµé‡",
+   "running":"å·¥å†µæµé‡",
+   "summary":"æ€»è®¡æµé‡",
+   "pointtime":"æµ‹ç‚¹æ—¶é—´æˆ³"
 
-3¡¢²ÉÓÃMQTTĞ­ÒéÊ±Ê¹ÓÃsrc\main\java\com\gasmonitor\collector\EventMessage.protoÎÄ¼ş½á¹¹½øĞĞprotobuf±àÂëºó´«ËÍ
-¡£
-4¡¢²»¹Ü²ÉÓÃRESTFUL»¹ÊÇMQTT£¬½ÓÊÜÊı¾İºóĞ´Èëhazelcast,Ğ´ÈëµÄhazelcastÎªGasEventÊÂ¼ş¼ÓÉÏÉè±¸ËùÊôµÄtenantºÅ¡£±äÎªGasHazelcastÀà¡£
-5¡¢Ç°¶ÎÕ¹ÏÖºÍºóÌ¨Ğ´Èë¶Î¶¼¼àÌı´ËhazecastµÄtopic,Ğ´Èë²¿·Ö¸ù¾İtenantºÅĞ´ÈëgasEvent+tenantµÄmeasurement.
-6¡¢EventController.java½ÓÊÜRestfulÉÏ´«Êı¾İ£¬Ò²ÏòÇ°¶ÎÕ¹ÏÖ²¿·ÖÌá¹©ÀúÊ·Êı¾İµÄ²éÑ¯¡£
-²âÊÔ
-ËÄ¡¢ÔËĞĞ×¢ÒâÊÂÏî
-1¡¢½«GasServiceÖĞµÄpublic void mockHazelcastMap()×¢ÊÍµô£¬´Ë´¦ÊÇÎªÁËÄ£ÄâÉè±¸¹éÊô×â»§½¨Á¢µÄÒ»¸ö²âÊÔ±í£¬ºÍÊµ¼ÊÇé¿ö²»Í¬£¡£¡£¡£¡£¡£¡
+3ã€é‡‡ç”¨MQTTåè®®æ—¶ä½¿ç”¨src\main\java\com\gasmonitor\collector\EventMessage.protoæ–‡ä»¶ç»“æ„è¿›è¡Œprotobufç¼–ç åä¼ é€
+ã€‚
+4ã€ä¸ç®¡é‡‡ç”¨RESTFULè¿˜æ˜¯MQTTï¼Œæ¥å—æ•°æ®åå†™å…¥hazelcast,å†™å…¥çš„hazelcastä¸ºGasEventäº‹ä»¶åŠ ä¸Šè®¾å¤‡æ‰€å±çš„tenantå·ã€‚å˜ä¸ºGasHazelcastç±»ã€‚
+5ã€å‰æ®µå±•ç°å’Œåå°å†™å…¥æ®µéƒ½ç›‘å¬æ­¤hazecastçš„topic,å†™å…¥éƒ¨åˆ†æ ¹æ®tenantå·å†™å…¥gasEvent+tenantçš„measurement.
+6ã€EventController.javaæ¥å—Restfulä¸Šä¼ æ•°æ®ï¼Œä¹Ÿå‘å‰æ®µå±•ç°éƒ¨åˆ†æä¾›å†å²æ•°æ®çš„æŸ¥è¯¢ã€‚
+æµ‹è¯•
+å››ã€è¿è¡Œæ³¨æ„äº‹é¡¹
+1ã€å°†GasServiceä¸­çš„public void mockHazelcastMap()æ³¨é‡Šæ‰ï¼Œæ­¤å¤„æ˜¯ä¸ºäº†æ¨¡æ‹Ÿè®¾å¤‡å½’å±ç§Ÿæˆ·å»ºç«‹çš„ä¸€ä¸ªæµ‹è¯•è¡¨ï¼Œå’Œå®é™…æƒ…å†µä¸åŒï¼ï¼ï¼ï¼ï¼ï¼
 
-2¡£ÔÚapplication.propetiesÖĞÌí¼Óhazelcast£¬influxdb²ÎÊı
+2ã€‚åœ¨application.propetiesä¸­æ·»åŠ hazelcastï¼Œinfluxdbå‚æ•°
