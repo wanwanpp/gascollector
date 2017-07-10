@@ -51,9 +51,6 @@ public class GasEventService {
         String tenant = "";
         tenant = map.get(event.getHardwareId());
         logger.info("把收到的消息{}publick给{},map:{}", hazelcastEvent, tenant, map);
-        hazelcastEvent.setTenantId(tenant);
-        topic.publish(hazelcastEvent);
-
         if (tenant != null) {
             logger.info("把收到的消息{}publick给{}", hazelcastEvent, tenant);
             hazelcastEvent.setTenantId(tenant);
