@@ -27,7 +27,7 @@ public class EventController {
             log.error(ex.getMessage());
             throw ex;
         }
-        log.info("/even/new ==> event:{}", event);
+        System.out.println(event);
         return new HashMap<String, String>().put("sucess", "true");
     }
 

@@ -51,7 +51,7 @@ public class InfluxdbService {
 
         batchPoints = BatchPoints
                 .database(dbName)
-                .retentionPolicy("default")
+                .retentionPolicy(retention)
                 .consistency(InfluxDB.ConsistencyLevel.ALL)
                 .build();
         batchPoints.point(point);

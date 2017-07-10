@@ -497,7 +497,7 @@ public final class EventProbuf {
         implements
         // @@protoc_insertion_point(builder_implements:EventMessage)
         com.gasmonitor.collector.EventProbuf.EventMessageOrBuilder {
-      // Construct using com.gasmonitor.collector.EventProbuf.EventMessage.newBuilder()
+      // Construct using com.com.gasmonitor.collector.EventProbuf.EventMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }

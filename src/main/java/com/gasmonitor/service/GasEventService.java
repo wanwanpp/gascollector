@@ -22,7 +22,6 @@ import java.util.List;
 @Service
 @ConfigurationProperties(prefix = "event")
 public class GasEventService {
-
     private Logger logger = LoggerFactory.getLogger(GasEventService.class);
 
     @Autowired
@@ -52,7 +51,6 @@ public class GasEventService {
         tenant = map.get(event.getHardwareId());
         logger.info("把收到的消息{}publish{},map:{}", hazelcastEvent, tenant, map.toString());
         if (tenant != null) {
-            logger.info("把收到的消息{}publick给{}", hazelcastEvent, tenant);
             hazelcastEvent.setTenantId(tenant);
             topic.publish(hazelcastEvent);
         }

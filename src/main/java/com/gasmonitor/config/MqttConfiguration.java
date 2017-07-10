@@ -5,6 +5,7 @@ import com.gasmonitor.service.GasEventService;
 import com.gasmonitor.utils.ProtoBuffferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -21,8 +22,8 @@ import org.springframework.messaging.MessagingException;
 //import org.springframework.integration.Message;
 //import org.springframework.integration.MessagingException;
 
-//@Configuration //暂时不用mqtt
-//@EnableConfigurationProperties(MqttProperties.class) //暂时不用
+@Configuration
+@EnableConfigurationProperties(MqttProperties.class)
 public class MqttConfiguration {
 
     @Autowired
@@ -58,14 +59,13 @@ public class MqttConfiguration {
         MqttPahoMessageDrivenChannelAdapter inbound =
                 new MqttPahoMessageDrivenChannelAdapter(brokerURL, "si-test-in", clientFact,
                         topicName);
-        inbound.setCompletionTimeout(30000);
+        inbound.setCompletionTimeout(5000);
         inbound.setConverter(messageConverter());
         //inbound.setConverter(new ByteArrayMessageConverter());
-
         inbound.setQos(1);
         inbound.setOutputChannel(mqttInputChannel());
         /*ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
-    taskScheduler.initialize();
+	taskScheduler.initialize();
 	inbound.setTaskScheduler(taskScheduler);
 	inbound.setBeanFactory(mock(BeanFactory.class));
 	inbound.afterPropertiesSet();
@@ -94,10 +94,8 @@ public class MqttConfiguration {
                     System.out.println("\nError in receiving data from mqtt broker!!!," + e.toString());
                 }
             }
-
         };
     }
-
 }
-
+	
 

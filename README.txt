@@ -15,7 +15,7 @@ JDK1.8 tomcat8 influxdb 8080端口不被其他应用占用。如果采用mqtt通
    "summary":"总计流量",
    "pointtime":"测点时间戳"
 
-3、采用MQTT协议时使用src\main\java\com\gasmonitor\collector\EventMessage.proto文件结构进行protobuf编码后传送
+3、采用MQTT协议时使用src\main\java\com\com.gasmonitor\collector\EventMessage.proto文件结构进行protobuf编码后传送
 。
 4、不管采用RESTFUL还是MQTT，接受数据后写入hazelcast,写入的hazelcast为GasEvent事件加上设备所属的tenant号。变为GasHazelcast类。
 5、前段展现和后台写入段都监听此hazecast的topic,写入部分根据tenant号写入gasEvent+tenant的measurement.
