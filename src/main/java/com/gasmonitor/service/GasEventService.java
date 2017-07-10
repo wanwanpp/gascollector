@@ -40,7 +40,7 @@ public class GasEventService {
         topic = hazelcastInstance.getTopic(topicName);
         map = hazelcastInstance.getMap("tenant");
 //delete this line before online 
-        mockHazelcastMap();
+//        mockHazelcastMap();
 
     }
 
@@ -50,7 +50,7 @@ public class GasEventService {
         hazelcastEvent.setGasEvent(event);
         String tenant = "";
         tenant = map.get(event.getHardwareId());
-        logger.info("把收到的消息{}publick给{},map:{}", hazelcastEvent, tenant, map);
+        logger.info("把收到的消息{}publish{},map:{}", hazelcastEvent, tenant, map.toString());
         if (tenant != null) {
             logger.info("把收到的消息{}publick给{}", hazelcastEvent, tenant);
             hazelcastEvent.setTenantId(tenant);
