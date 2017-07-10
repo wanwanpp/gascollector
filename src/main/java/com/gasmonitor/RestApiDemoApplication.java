@@ -2,6 +2,7 @@ package com.gasmonitor;
 
 import java.util.List;
 import java.util.ArrayList;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,21 +18,22 @@ import com.gasmonitor.utils.GasEventProcessor;
 import com.hazelcast.config.ListenerConfig;
 import com.hazelcast.config.TopicConfig;
 import com.hazelcast.config.Config;
+
 @SpringBootApplication
 @EnableCaching
 @EnableIntegration
 public class RestApiDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RestApiDemoApplication.class, args);
-	}
-	/*
+    public static void main(String[] args) {
+        SpringApplication.run(RestApiDemoApplication.class, args);
+    }
+    /*
 	@Bean
 	public HazelcastInstance hazelcastInstance(){
             ClientConfig config=new ClientConfig();
             HazelcastInstance instance=HazelcastClient.newHazelcastClient(config);
 		return instance;
 		};*/
-	
+
 
 }
