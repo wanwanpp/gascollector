@@ -7,8 +7,6 @@ import com.gasmonitor.utils.InfluxdbService;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.core.ITopic;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -22,8 +20,6 @@ import java.util.List;
 @Service
 @ConfigurationProperties(prefix = "event")
 public class GasEventService {
-
-    private Logger logger = LoggerFactory.getLogger(GasEventService.class);
 
     @Autowired
     HazelcastInstance hazelcastInstance;
@@ -50,9 +46,7 @@ public class GasEventService {
         hazelcastEvent.setGasEvent(event);
         String tenant = "";
         tenant = map.get(event.getHardwareId());
-        logger.info("把收到的消息{}publick给{},map:{}", hazelcastEvent, tenant, map);
         if (tenant != null) {
-            logger.info("把收到的消息{}publick给{}", hazelcastEvent, tenant);
             hazelcastEvent.setTenantId(tenant);
             topic.publish(hazelcastEvent);
         }

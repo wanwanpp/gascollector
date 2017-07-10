@@ -5,10 +5,9 @@ import com.gasmonitor.utils.InfluxdbService;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.ListenerConfig;
 import com.hazelcast.config.TopicConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,9 +19,8 @@ import java.util.List;
  */
 @Configuration
 //@Profile("hazelcast-cache")
-//@EnableConfigurationProperties(DataProperties.class)
+@EnableConfigurationProperties(DataProperties.class)
 public class HazelcastCacheConfig {
-    private Logger logger = LoggerFactory.getLogger(HazelcastCacheConfig.class);
 
     @Value("${datastore.dbName}")
     private String dbName;
@@ -38,6 +36,9 @@ public class HazelcastCacheConfig {
     private String url;
     @Value("${datastore.topicName}")
     private String topicName;
+
+    @Value("${influx.write.threadNum}")
+    private int threadNum;
 
     @Autowired
     InfluxdbService influxdbService;
@@ -55,14 +56,13 @@ public class HazelcastCacheConfig {
         Config config = new Config();
         config.setInstanceName("hazelcastInstance");
 
-        GasEventProcessor processor = new GasEventProcessor(influxdbService);
+        GasEventProcessor processor = new GasEventProcessor(influxdbService,threadNum);
         ListenerConfig listenerConfig = new ListenerConfig(processor);
         List<ListenerConfig> listenerConfigList = new ArrayList<ListenerConfig>();
         listenerConfigList.add(listenerConfig);
         TopicConfig allEventsCache = new TopicConfig();
         allEventsCache.setMessageListenerConfigs(listenerConfigList);
         allEventsCache.setName("GasEvent");
-        logger.info("HazelcastCacheConfig --> 得到的topicName:{}", topicName);
         config.getTopicConfigs().put(topicName, allEventsCache);
 
         return config;
