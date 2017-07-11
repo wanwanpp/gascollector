@@ -39,12 +39,7 @@ public class GasEventProcessor implements MessageListener<GasHazelcast> {
         System.out.println("The listener received data......................................");
         System.out.println("the tenant id is " + hazelcastEvent.getTenantId());
         GasEvent event = hazelcastEvent.getGasEvent();
-        System.out.println("The hardwareid is :" + event.getHardwareId());
-        System.out.println("The temperature is:" + event.getTemperature());
-        System.out.println("THE PRESSURE IS :" + event.getPressure());
-        System.out.println("the standard is :" + event.getStandard());
-        System.out.println("The running is :" + event.getRunning());
-        System.out.println("The pointtime is :" + event.getPointtime());
+        System.out.println(event);
     }
 
     public class Consume implements Runnable {

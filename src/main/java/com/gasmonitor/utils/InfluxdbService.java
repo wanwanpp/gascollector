@@ -11,7 +11,7 @@ import org.influxdb.dto.QueryResult;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -45,6 +45,18 @@ public class InfluxdbService {
                 .addField("standard", e.getStandard())
                 .addField("running", e.getRunning())
                 .addField("summary", e.getSummary())
+                .addField("surplus", e.getSurplus())
+                .addField("analog1", e.getAnalog1())
+                .addField("analog2", e.getAnalog2())
+                .addField("analog3", e.getAnalog3())
+                .addField("analog4", e.getAnalog4())
+                .addField("switch1", e.getSwitch1())
+                .addField("switch2", e.getSwitch2())
+                .addField("switch3", e.getSwitch3())
+                .addField("switch4", e.getSwitch4())
+                .addField("ac220", e.getAc220())
+                .addField("battery", e.getBattery())
+                .addField("solar", e.getSolar())
                 .tag("hardwareId", e.getHardwareId())
                 .build();
         System.out.println("The point is " + point);
@@ -60,57 +72,73 @@ public class InfluxdbService {
     }
 
     //query measurements
-//    public List<GasEvent> query(String tenant, String hardwareId, Timestamp begin, Timestamp end) {
     public List<GasEvent> query(String tenant, String hardwareId, long begin, long end) {
-        begin*=1000000;
-        end*=1000000;
-//        String command = "select * from measurement" + tenant.trim() + "  where hardwareId='" + hardwareId + "' and time>'" + begin + "' and time<'" + end + "'";
+        begin *= 1000000;
+        end *= 1000000;
         String command = "select * from measurement" + tenant.trim() + "  where hardwareId='" + hardwareId + "' and time>" + begin + " and time<" + end;
-        ;
-
-        // String command="select * from measurement99"+"  where hardwareId='ID2'";//+hardwareId+"'";
-
-        //+"  and time>"+begin+" and time<"+end;
         System.out.println("\n ===========================================\nthe influxdb command is " + command);
-        ArrayList<GasEvent> list = new ArrayList<GasEvent>();
+
+        LinkedList<GasEvent> list = new LinkedList<>();
         QueryResult queryResult = influxDB.query(new Query(command, dbName));
         List<QueryResult.Result> results = queryResult.getResults();
-        System.out.println("\n the series is:" + results.get(0).getSeries().get(0).getValues().get(0).get(0));
-        List<List<Object>> objList = results.get(0).getSeries().get(0).getValues();
-        if (CollectionUtils.isNotEmpty(results)) {
+        if (CollectionUtils.isNotEmpty(results.get(0).getSeries())) {
+            System.out.println("\n the series is:" + results.get(0).getSeries().get(0).getValues().get(0).get(0));
+            List<List<Object>> objList = results.get(0).getSeries().get(0).getValues();
             int size = objList.size();
             System.out.println("The size is " + size);
+
             for (int i = 0; i < size; i++) {
                 GasEvent event = new GasEvent();
                 event.setHardwareId(hardwareId);
-                String splitStr = (String) objList.get(i).get(0);
+
+                List<Object> fieldList = objList.get(i);
+                String splitStr = (String) fieldList.get(0);
                 splitStr = splitStr.replace('T', ' ');
                 splitStr = splitStr.substring(0, splitStr.length() - 1);
                 System.out.println("Time str is:" + splitStr);
                 Timestamp timestamp = Timestamp.valueOf(splitStr);
                 long pointtime = timestamp.getTime();
-                System.out.println("time is " + pointtime);
-                //long pointtime = Long.parseLong(splitStr);
                 event.setPointtime(pointtime);
-                //splitStr=(String)objList.get(i).get(6);
-                //System.out.println("value is "+splitStr);
-                Double tmp = (Double) objList.get(i).get(6);
-                event.setTemperature(tmp);
-                tmp = (Double) objList.get(i).get(2);
-                System.out.println("value is " + tmp);
-                event.setPressure(tmp);
-                tmp = (Double) objList.get(i).get(4);
-                System.out.println("4value is " + tmp);
-                event.setStandard(tmp);
-                tmp = (Double) objList.get(i).get(3);
-                System.out.println("3value is " + tmp);
-                event.setRunning(tmp);
-                tmp = (Double) objList.get(i).get(5);
-                System.out.println("5value is " + tmp);
-                event.setSummary(tmp);
+                int ac220 = (int) (double) fieldList.get(1);
+                event.setAc220(ac220);
+                double analog1 = (double) fieldList.get(2);
+                event.setAnalog1(analog1);
+                double analog2 = (double) fieldList.get(3);
+                event.setAnalog2(analog2);
+                double analog3 = (double) fieldList.get(4);
+                event.setAnalog3(analog3);
+                double analog4 = (double) fieldList.get(5);
+                event.setAnalog4(analog4);
+                int battery = (int) (double) fieldList.get(6);
+                event.setBattery(battery);
+                double pressure = (double) fieldList.get(8);
+                event.setPressure(pressure);
+                double running = (double) fieldList.get(9);
+                event.setRunning(running);
+                int solar = (int) (double) fieldList.get(10);
+                event.setSolar(solar);
+                double standard = (double) fieldList.get(11);
+                event.setStandard(standard);
+                double summary = (double) fieldList.get(12);
+                event.setSummary(summary);
+                double surplus = (double) fieldList.get(13);
+                event.setSurplus(surplus);
+                int switch1 = (int) (double) fieldList.get(14);
+                event.setSwitch1(switch1);
+                int switch2 = (int) (double) fieldList.get(15);
+                event.setSwitch2(switch2);
+                int switch3 = (int) (double) fieldList.get(16);
+                event.setSwitch3(switch3);
+                int switch4 = (int) (double) fieldList.get(17);
+                event.setSwitch4(switch4);
+                double temperature = (double) fieldList.get(18);
+                event.setTemperature(temperature);
 
+                System.out.println(event);
                 list.add(event);
             }
+        } else {
+            System.out.println("查询结果为空。");
         }
         return list;
     }
@@ -125,7 +153,6 @@ public class InfluxdbService {
         batchNum = batchNum1;
         retention = retention1;
         influxDB = InfluxDBFactory.connect(url, user, password);
-
     }//end of initPara
 
 }//end of class

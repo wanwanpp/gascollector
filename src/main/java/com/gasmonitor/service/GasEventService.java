@@ -36,7 +36,7 @@ public class GasEventService {
         topic = hazelcastInstance.getTopic(topicName);
         map = hazelcastInstance.getMap("tenant");
 //delete this line before online 
-//        mockHazelcastMap();
+        mockHazelcastMap();
 
     }
 
@@ -65,13 +65,7 @@ public class GasEventService {
     public void display(GasEvent event) {
         System.out.println("================================================================================The received even is :");
         System.out.println("The received even is :");
-
-        System.out.println("The hardwareid is :" + event.getHardwareId());
-        System.out.println("The temperature is:" + event.getTemperature());
-        System.out.println("THE PRESSURE IS :" + event.getPressure());
-        System.out.println("the standard is :" + event.getStandard());
-        System.out.println("The running is :" + event.getRunning());
-        System.out.println("The pointtime is :" + event.getPointtime());
+        System.out.println(event);
     }
 
     public void mockHazelcastMap() {

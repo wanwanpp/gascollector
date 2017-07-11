@@ -19,7 +19,7 @@ public final class EventProbuf {
     /**
      * <code>required string hardwareId = 1;</code>
      */
-    java.lang.String getHardwareId();
+    String getHardwareId();
     /**
      * <code>required string hardwareId = 1;</code>
      */
@@ -72,11 +72,119 @@ public final class EventProbuf {
     double getSummary();
 
     /**
-     * <code>optional uint64 pointtime = 7;</code>
+     * <code>optional double surplus = 7;</code>
+     */
+    boolean hasSurplus();
+    /**
+     * <code>optional double surplus = 7;</code>
+     */
+    double getSurplus();
+
+    /**
+     * <code>optional double analog1 = 8;</code>
+     */
+    boolean hasAnalog1();
+    /**
+     * <code>optional double analog1 = 8;</code>
+     */
+    double getAnalog1();
+
+    /**
+     * <code>optional double analog2 = 9;</code>
+     */
+    boolean hasAnalog2();
+    /**
+     * <code>optional double analog2 = 9;</code>
+     */
+    double getAnalog2();
+
+    /**
+     * <code>optional double analog3 = 10;</code>
+     */
+    boolean hasAnalog3();
+    /**
+     * <code>optional double analog3 = 10;</code>
+     */
+    double getAnalog3();
+
+    /**
+     * <code>optional double analog4 = 11;</code>
+     */
+    boolean hasAnalog4();
+    /**
+     * <code>optional double analog4 = 11;</code>
+     */
+    double getAnalog4();
+
+    /**
+     * <code>optional int32 switch1 = 12;</code>
+     */
+    boolean hasSwitch1();
+    /**
+     * <code>optional int32 switch1 = 12;</code>
+     */
+    int getSwitch1();
+
+    /**
+     * <code>optional int32 switch2 = 13;</code>
+     */
+    boolean hasSwitch2();
+    /**
+     * <code>optional int32 switch2 = 13;</code>
+     */
+    int getSwitch2();
+
+    /**
+     * <code>optional int32 switch3 = 14;</code>
+     */
+    boolean hasSwitch3();
+    /**
+     * <code>optional int32 switch3 = 14;</code>
+     */
+    int getSwitch3();
+
+    /**
+     * <code>optional int32 switch4 = 15;</code>
+     */
+    boolean hasSwitch4();
+    /**
+     * <code>optional int32 switch4 = 15;</code>
+     */
+    int getSwitch4();
+
+    /**
+     * <code>optional int32 ac220 = 16;</code>
+     */
+    boolean hasAc220();
+    /**
+     * <code>optional int32 ac220 = 16;</code>
+     */
+    int getAc220();
+
+    /**
+     * <code>optional int32 battery = 17;</code>
+     */
+    boolean hasBattery();
+    /**
+     * <code>optional int32 battery = 17;</code>
+     */
+    int getBattery();
+
+    /**
+     * <code>optional int32 solar = 18;</code>
+     */
+    boolean hasSolar();
+    /**
+     * <code>optional int32 solar = 18;</code>
+     */
+    int getSolar();
+
+    /**
+     * <code>optional uint64 pointtime = 19;</code>
      */
     boolean hasPointtime();
     /**
-     * <code>optional uint64 pointtime = 7;</code>
+     * <code>optional uint64 pointtime = 19;</code>
      */
     long getPointtime();
   }
@@ -161,8 +269,68 @@ public final class EventProbuf {
               summary_ = input.readDouble();
               break;
             }
-            case 56: {
+            case 57: {
               bitField0_ |= 0x00000040;
+              surplus_ = input.readDouble();
+              break;
+            }
+            case 65: {
+              bitField0_ |= 0x00000080;
+              analog1_ = input.readDouble();
+              break;
+            }
+            case 73: {
+              bitField0_ |= 0x00000100;
+              analog2_ = input.readDouble();
+              break;
+            }
+            case 81: {
+              bitField0_ |= 0x00000200;
+              analog3_ = input.readDouble();
+              break;
+            }
+            case 89: {
+              bitField0_ |= 0x00000400;
+              analog4_ = input.readDouble();
+              break;
+            }
+            case 96: {
+              bitField0_ |= 0x00000800;
+              switch1_ = input.readInt32();
+              break;
+            }
+            case 104: {
+              bitField0_ |= 0x00001000;
+              switch2_ = input.readInt32();
+              break;
+            }
+            case 112: {
+              bitField0_ |= 0x00002000;
+              switch3_ = input.readInt32();
+              break;
+            }
+            case 120: {
+              bitField0_ |= 0x00004000;
+              switch4_ = input.readInt32();
+              break;
+            }
+            case 128: {
+              bitField0_ |= 0x00008000;
+              ac220_ = input.readInt32();
+              break;
+            }
+            case 136: {
+              bitField0_ |= 0x00010000;
+              battery_ = input.readInt32();
+              break;
+            }
+            case 144: {
+              bitField0_ |= 0x00020000;
+              solar_ = input.readInt32();
+              break;
+            }
+            case 152: {
+              bitField0_ |= 0x00040000;
               pointtime_ = input.readUInt64();
               break;
             }
@@ -194,14 +362,14 @@ public final class EventProbuf {
       }
     };
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<EventMessage> getParserForType() {
       return PARSER;
     }
 
     private int bitField0_;
     public static final int HARDWAREID_FIELD_NUMBER = 1;
-    private java.lang.Object hardwareId_;
+    private Object hardwareId_;
     /**
      * <code>required string hardwareId = 1;</code>
      */
@@ -211,14 +379,14 @@ public final class EventProbuf {
     /**
      * <code>required string hardwareId = 1;</code>
      */
-    public java.lang.String getHardwareId() {
-      java.lang.Object ref = hardwareId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getHardwareId() {
+      Object ref = hardwareId_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           hardwareId_ = s;
         }
@@ -230,11 +398,11 @@ public final class EventProbuf {
      */
     public com.google.protobuf.ByteString
         getHardwareIdBytes() {
-      java.lang.Object ref = hardwareId_;
-      if (ref instanceof java.lang.String) {
+      Object ref = hardwareId_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         hardwareId_ = b;
         return b;
       } else {
@@ -317,16 +485,196 @@ public final class EventProbuf {
       return summary_;
     }
 
-    public static final int POINTTIME_FIELD_NUMBER = 7;
-    private long pointtime_;
+    public static final int SURPLUS_FIELD_NUMBER = 7;
+    private double surplus_;
     /**
-     * <code>optional uint64 pointtime = 7;</code>
+     * <code>optional double surplus = 7;</code>
      */
-    public boolean hasPointtime() {
+    public boolean hasSurplus() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional uint64 pointtime = 7;</code>
+     * <code>optional double surplus = 7;</code>
+     */
+    public double getSurplus() {
+      return surplus_;
+    }
+
+    public static final int ANALOG1_FIELD_NUMBER = 8;
+    private double analog1_;
+    /**
+     * <code>optional double analog1 = 8;</code>
+     */
+    public boolean hasAnalog1() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional double analog1 = 8;</code>
+     */
+    public double getAnalog1() {
+      return analog1_;
+    }
+
+    public static final int ANALOG2_FIELD_NUMBER = 9;
+    private double analog2_;
+    /**
+     * <code>optional double analog2 = 9;</code>
+     */
+    public boolean hasAnalog2() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    /**
+     * <code>optional double analog2 = 9;</code>
+     */
+    public double getAnalog2() {
+      return analog2_;
+    }
+
+    public static final int ANALOG3_FIELD_NUMBER = 10;
+    private double analog3_;
+    /**
+     * <code>optional double analog3 = 10;</code>
+     */
+    public boolean hasAnalog3() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional double analog3 = 10;</code>
+     */
+    public double getAnalog3() {
+      return analog3_;
+    }
+
+    public static final int ANALOG4_FIELD_NUMBER = 11;
+    private double analog4_;
+    /**
+     * <code>optional double analog4 = 11;</code>
+     */
+    public boolean hasAnalog4() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    /**
+     * <code>optional double analog4 = 11;</code>
+     */
+    public double getAnalog4() {
+      return analog4_;
+    }
+
+    public static final int SWITCH1_FIELD_NUMBER = 12;
+    private int switch1_;
+    /**
+     * <code>optional int32 switch1 = 12;</code>
+     */
+    public boolean hasSwitch1() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    /**
+     * <code>optional int32 switch1 = 12;</code>
+     */
+    public int getSwitch1() {
+      return switch1_;
+    }
+
+    public static final int SWITCH2_FIELD_NUMBER = 13;
+    private int switch2_;
+    /**
+     * <code>optional int32 switch2 = 13;</code>
+     */
+    public boolean hasSwitch2() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    /**
+     * <code>optional int32 switch2 = 13;</code>
+     */
+    public int getSwitch2() {
+      return switch2_;
+    }
+
+    public static final int SWITCH3_FIELD_NUMBER = 14;
+    private int switch3_;
+    /**
+     * <code>optional int32 switch3 = 14;</code>
+     */
+    public boolean hasSwitch3() {
+      return ((bitField0_ & 0x00002000) == 0x00002000);
+    }
+    /**
+     * <code>optional int32 switch3 = 14;</code>
+     */
+    public int getSwitch3() {
+      return switch3_;
+    }
+
+    public static final int SWITCH4_FIELD_NUMBER = 15;
+    private int switch4_;
+    /**
+     * <code>optional int32 switch4 = 15;</code>
+     */
+    public boolean hasSwitch4() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    /**
+     * <code>optional int32 switch4 = 15;</code>
+     */
+    public int getSwitch4() {
+      return switch4_;
+    }
+
+    public static final int AC220_FIELD_NUMBER = 16;
+    private int ac220_;
+    /**
+     * <code>optional int32 ac220 = 16;</code>
+     */
+    public boolean hasAc220() {
+      return ((bitField0_ & 0x00008000) == 0x00008000);
+    }
+    /**
+     * <code>optional int32 ac220 = 16;</code>
+     */
+    public int getAc220() {
+      return ac220_;
+    }
+
+    public static final int BATTERY_FIELD_NUMBER = 17;
+    private int battery_;
+    /**
+     * <code>optional int32 battery = 17;</code>
+     */
+    public boolean hasBattery() {
+      return ((bitField0_ & 0x00010000) == 0x00010000);
+    }
+    /**
+     * <code>optional int32 battery = 17;</code>
+     */
+    public int getBattery() {
+      return battery_;
+    }
+
+    public static final int SOLAR_FIELD_NUMBER = 18;
+    private int solar_;
+    /**
+     * <code>optional int32 solar = 18;</code>
+     */
+    public boolean hasSolar() {
+      return ((bitField0_ & 0x00020000) == 0x00020000);
+    }
+    /**
+     * <code>optional int32 solar = 18;</code>
+     */
+    public int getSolar() {
+      return solar_;
+    }
+
+    public static final int POINTTIME_FIELD_NUMBER = 19;
+    private long pointtime_;
+    /**
+     * <code>optional uint64 pointtime = 19;</code>
+     */
+    public boolean hasPointtime() {
+      return ((bitField0_ & 0x00040000) == 0x00040000);
+    }
+    /**
+     * <code>optional uint64 pointtime = 19;</code>
      */
     public long getPointtime() {
       return pointtime_;
@@ -339,6 +687,18 @@ public final class EventProbuf {
       standard_ = 0D;
       running_ = 0D;
       summary_ = 0D;
+      surplus_ = 0D;
+      analog1_ = 0D;
+      analog2_ = 0D;
+      analog3_ = 0D;
+      analog4_ = 0D;
+      switch1_ = 0;
+      switch2_ = 0;
+      switch3_ = 0;
+      switch4_ = 0;
+      ac220_ = 0;
+      battery_ = 0;
+      solar_ = 0;
       pointtime_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
@@ -377,7 +737,43 @@ public final class EventProbuf {
         output.writeDouble(6, summary_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeUInt64(7, pointtime_);
+        output.writeDouble(7, surplus_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeDouble(8, analog1_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeDouble(9, analog2_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeDouble(10, analog3_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeDouble(11, analog4_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        output.writeInt32(12, switch1_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        output.writeInt32(13, switch2_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        output.writeInt32(14, switch3_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeInt32(15, switch4_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        output.writeInt32(16, ac220_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        output.writeInt32(17, battery_);
+      }
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        output.writeInt32(18, solar_);
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        output.writeUInt64(19, pointtime_);
       }
       output.writeRawBytes(unknownFields);
     }
@@ -414,7 +810,55 @@ public final class EventProbuf {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(7, pointtime_);
+          .computeDoubleSize(7, surplus_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(8, analog1_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(9, analog2_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(10, analog3_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(11, analog4_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(12, switch1_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(13, switch2_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(14, switch3_);
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(15, switch4_);
+      }
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(16, ac220_);
+      }
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(17, battery_);
+      }
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(18, solar_);
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(19, pointtime_);
       }
       size += unknownFields.size();
       memoizedSerializedSize = size;
@@ -422,59 +866,59 @@ public final class EventProbuf {
     }
 
     private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
+    @Override
+    protected Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
 
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(
+    public static EventMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(
+    public static EventMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(byte[] data)
+    public static EventMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(
+    public static EventMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(java.io.InputStream input)
+    public static EventMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(
+    public static EventMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseDelimitedFrom(java.io.InputStream input)
+    public static EventMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseDelimitedFrom(
+    public static EventMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(
+    public static EventMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.gasmonitor.collector.EventProbuf.EventMessage parseFrom(
+    public static EventMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -483,7 +927,7 @@ public final class EventProbuf {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.gasmonitor.collector.EventProbuf.EventMessage prototype) {
+    public static Builder newBuilder(EventMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -493,11 +937,11 @@ public final class EventProbuf {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.gasmonitor.collector.EventProbuf.EventMessage, Builder>
+          EventMessage, Builder>
         implements
         // @@protoc_insertion_point(builder_implements:EventMessage)
-        com.gasmonitor.collector.EventProbuf.EventMessageOrBuilder {
-      // Construct using com.com.gasmonitor.collector.EventProbuf.EventMessage.newBuilder()
+        EventMessageOrBuilder {
+      // Construct using com.gasmonitor.collector.EventProbuf.EventMessage.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -522,8 +966,32 @@ public final class EventProbuf {
         bitField0_ = (bitField0_ & ~0x00000010);
         summary_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000020);
-        pointtime_ = 0L;
+        surplus_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000040);
+        analog1_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        analog2_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        analog3_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        analog4_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000400);
+        switch1_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000800);
+        switch2_ = 0;
+        bitField0_ = (bitField0_ & ~0x00001000);
+        switch3_ = 0;
+        bitField0_ = (bitField0_ & ~0x00002000);
+        switch4_ = 0;
+        bitField0_ = (bitField0_ & ~0x00004000);
+        ac220_ = 0;
+        bitField0_ = (bitField0_ & ~0x00008000);
+        battery_ = 0;
+        bitField0_ = (bitField0_ & ~0x00010000);
+        solar_ = 0;
+        bitField0_ = (bitField0_ & ~0x00020000);
+        pointtime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00040000);
         return this;
       }
 
@@ -531,20 +999,20 @@ public final class EventProbuf {
         return create().mergeFrom(buildPartial());
       }
 
-      public com.gasmonitor.collector.EventProbuf.EventMessage getDefaultInstanceForType() {
-        return com.gasmonitor.collector.EventProbuf.EventMessage.getDefaultInstance();
+      public EventMessage getDefaultInstanceForType() {
+        return EventMessage.getDefaultInstance();
       }
 
-      public com.gasmonitor.collector.EventProbuf.EventMessage build() {
-        com.gasmonitor.collector.EventProbuf.EventMessage result = buildPartial();
+      public EventMessage build() {
+        EventMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.gasmonitor.collector.EventProbuf.EventMessage buildPartial() {
-        com.gasmonitor.collector.EventProbuf.EventMessage result = new com.gasmonitor.collector.EventProbuf.EventMessage(this);
+      public EventMessage buildPartial() {
+        EventMessage result = new EventMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -574,13 +1042,61 @@ public final class EventProbuf {
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
+        result.surplus_ = surplus_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.analog1_ = analog1_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.analog2_ = analog2_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.analog3_ = analog3_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
+        }
+        result.analog4_ = analog4_;
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000800;
+        }
+        result.switch1_ = switch1_;
+        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
+          to_bitField0_ |= 0x00001000;
+        }
+        result.switch2_ = switch2_;
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00002000;
+        }
+        result.switch3_ = switch3_;
+        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.switch4_ = switch4_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00008000;
+        }
+        result.ac220_ = ac220_;
+        if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
+          to_bitField0_ |= 0x00010000;
+        }
+        result.battery_ = battery_;
+        if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
+          to_bitField0_ |= 0x00020000;
+        }
+        result.solar_ = solar_;
+        if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
+          to_bitField0_ |= 0x00040000;
+        }
         result.pointtime_ = pointtime_;
         result.bitField0_ = to_bitField0_;
         return result;
       }
 
-      public Builder mergeFrom(com.gasmonitor.collector.EventProbuf.EventMessage other) {
-        if (other == com.gasmonitor.collector.EventProbuf.EventMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(EventMessage other) {
+        if (other == EventMessage.getDefaultInstance()) return this;
         if (other.hasHardwareId()) {
           bitField0_ |= 0x00000001;
           hardwareId_ = other.hardwareId_;
@@ -600,6 +1116,42 @@ public final class EventProbuf {
         }
         if (other.hasSummary()) {
           setSummary(other.getSummary());
+        }
+        if (other.hasSurplus()) {
+          setSurplus(other.getSurplus());
+        }
+        if (other.hasAnalog1()) {
+          setAnalog1(other.getAnalog1());
+        }
+        if (other.hasAnalog2()) {
+          setAnalog2(other.getAnalog2());
+        }
+        if (other.hasAnalog3()) {
+          setAnalog3(other.getAnalog3());
+        }
+        if (other.hasAnalog4()) {
+          setAnalog4(other.getAnalog4());
+        }
+        if (other.hasSwitch1()) {
+          setSwitch1(other.getSwitch1());
+        }
+        if (other.hasSwitch2()) {
+          setSwitch2(other.getSwitch2());
+        }
+        if (other.hasSwitch3()) {
+          setSwitch3(other.getSwitch3());
+        }
+        if (other.hasSwitch4()) {
+          setSwitch4(other.getSwitch4());
+        }
+        if (other.hasAc220()) {
+          setAc220(other.getAc220());
+        }
+        if (other.hasBattery()) {
+          setBattery(other.getBattery());
+        }
+        if (other.hasSolar()) {
+          setSolar(other.getSolar());
         }
         if (other.hasPointtime()) {
           setPointtime(other.getPointtime());
@@ -621,11 +1173,11 @@ public final class EventProbuf {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.gasmonitor.collector.EventProbuf.EventMessage parsedMessage = null;
+        EventMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.gasmonitor.collector.EventProbuf.EventMessage) e.getUnfinishedMessage();
+          parsedMessage = (EventMessage) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -636,7 +1188,7 @@ public final class EventProbuf {
       }
       private int bitField0_;
 
-      private java.lang.Object hardwareId_ = "";
+      private Object hardwareId_ = "";
       /**
        * <code>required string hardwareId = 1;</code>
        */
@@ -646,18 +1198,18 @@ public final class EventProbuf {
       /**
        * <code>required string hardwareId = 1;</code>
        */
-      public java.lang.String getHardwareId() {
-        java.lang.Object ref = hardwareId_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getHardwareId() {
+        Object ref = hardwareId_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             hardwareId_ = s;
           }
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -665,11 +1217,11 @@ public final class EventProbuf {
        */
       public com.google.protobuf.ByteString
           getHardwareIdBytes() {
-        java.lang.Object ref = hardwareId_;
+        Object ref = hardwareId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           hardwareId_ = b;
           return b;
         } else {
@@ -680,7 +1232,7 @@ public final class EventProbuf {
        * <code>required string hardwareId = 1;</code>
        */
       public Builder setHardwareId(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -872,33 +1424,417 @@ public final class EventProbuf {
         return this;
       }
 
-      private long pointtime_ ;
+      private double surplus_ ;
       /**
-       * <code>optional uint64 pointtime = 7;</code>
+       * <code>optional double surplus = 7;</code>
        */
-      public boolean hasPointtime() {
+      public boolean hasSurplus() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional uint64 pointtime = 7;</code>
+       * <code>optional double surplus = 7;</code>
+       */
+      public double getSurplus() {
+        return surplus_;
+      }
+      /**
+       * <code>optional double surplus = 7;</code>
+       */
+      public Builder setSurplus(double value) {
+        bitField0_ |= 0x00000040;
+        surplus_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional double surplus = 7;</code>
+       */
+      public Builder clearSurplus() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        surplus_ = 0D;
+        
+        return this;
+      }
+
+      private double analog1_ ;
+      /**
+       * <code>optional double analog1 = 8;</code>
+       */
+      public boolean hasAnalog1() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional double analog1 = 8;</code>
+       */
+      public double getAnalog1() {
+        return analog1_;
+      }
+      /**
+       * <code>optional double analog1 = 8;</code>
+       */
+      public Builder setAnalog1(double value) {
+        bitField0_ |= 0x00000080;
+        analog1_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional double analog1 = 8;</code>
+       */
+      public Builder clearAnalog1() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        analog1_ = 0D;
+        
+        return this;
+      }
+
+      private double analog2_ ;
+      /**
+       * <code>optional double analog2 = 9;</code>
+       */
+      public boolean hasAnalog2() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      /**
+       * <code>optional double analog2 = 9;</code>
+       */
+      public double getAnalog2() {
+        return analog2_;
+      }
+      /**
+       * <code>optional double analog2 = 9;</code>
+       */
+      public Builder setAnalog2(double value) {
+        bitField0_ |= 0x00000100;
+        analog2_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional double analog2 = 9;</code>
+       */
+      public Builder clearAnalog2() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        analog2_ = 0D;
+        
+        return this;
+      }
+
+      private double analog3_ ;
+      /**
+       * <code>optional double analog3 = 10;</code>
+       */
+      public boolean hasAnalog3() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      /**
+       * <code>optional double analog3 = 10;</code>
+       */
+      public double getAnalog3() {
+        return analog3_;
+      }
+      /**
+       * <code>optional double analog3 = 10;</code>
+       */
+      public Builder setAnalog3(double value) {
+        bitField0_ |= 0x00000200;
+        analog3_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional double analog3 = 10;</code>
+       */
+      public Builder clearAnalog3() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        analog3_ = 0D;
+        
+        return this;
+      }
+
+      private double analog4_ ;
+      /**
+       * <code>optional double analog4 = 11;</code>
+       */
+      public boolean hasAnalog4() {
+        return ((bitField0_ & 0x00000400) == 0x00000400);
+      }
+      /**
+       * <code>optional double analog4 = 11;</code>
+       */
+      public double getAnalog4() {
+        return analog4_;
+      }
+      /**
+       * <code>optional double analog4 = 11;</code>
+       */
+      public Builder setAnalog4(double value) {
+        bitField0_ |= 0x00000400;
+        analog4_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional double analog4 = 11;</code>
+       */
+      public Builder clearAnalog4() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        analog4_ = 0D;
+        
+        return this;
+      }
+
+      private int switch1_ ;
+      /**
+       * <code>optional int32 switch1 = 12;</code>
+       */
+      public boolean hasSwitch1() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      /**
+       * <code>optional int32 switch1 = 12;</code>
+       */
+      public int getSwitch1() {
+        return switch1_;
+      }
+      /**
+       * <code>optional int32 switch1 = 12;</code>
+       */
+      public Builder setSwitch1(int value) {
+        bitField0_ |= 0x00000800;
+        switch1_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 switch1 = 12;</code>
+       */
+      public Builder clearSwitch1() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        switch1_ = 0;
+        
+        return this;
+      }
+
+      private int switch2_ ;
+      /**
+       * <code>optional int32 switch2 = 13;</code>
+       */
+      public boolean hasSwitch2() {
+        return ((bitField0_ & 0x00001000) == 0x00001000);
+      }
+      /**
+       * <code>optional int32 switch2 = 13;</code>
+       */
+      public int getSwitch2() {
+        return switch2_;
+      }
+      /**
+       * <code>optional int32 switch2 = 13;</code>
+       */
+      public Builder setSwitch2(int value) {
+        bitField0_ |= 0x00001000;
+        switch2_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 switch2 = 13;</code>
+       */
+      public Builder clearSwitch2() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        switch2_ = 0;
+        
+        return this;
+      }
+
+      private int switch3_ ;
+      /**
+       * <code>optional int32 switch3 = 14;</code>
+       */
+      public boolean hasSwitch3() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      /**
+       * <code>optional int32 switch3 = 14;</code>
+       */
+      public int getSwitch3() {
+        return switch3_;
+      }
+      /**
+       * <code>optional int32 switch3 = 14;</code>
+       */
+      public Builder setSwitch3(int value) {
+        bitField0_ |= 0x00002000;
+        switch3_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 switch3 = 14;</code>
+       */
+      public Builder clearSwitch3() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        switch3_ = 0;
+        
+        return this;
+      }
+
+      private int switch4_ ;
+      /**
+       * <code>optional int32 switch4 = 15;</code>
+       */
+      public boolean hasSwitch4() {
+        return ((bitField0_ & 0x00004000) == 0x00004000);
+      }
+      /**
+       * <code>optional int32 switch4 = 15;</code>
+       */
+      public int getSwitch4() {
+        return switch4_;
+      }
+      /**
+       * <code>optional int32 switch4 = 15;</code>
+       */
+      public Builder setSwitch4(int value) {
+        bitField0_ |= 0x00004000;
+        switch4_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 switch4 = 15;</code>
+       */
+      public Builder clearSwitch4() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        switch4_ = 0;
+        
+        return this;
+      }
+
+      private int ac220_ ;
+      /**
+       * <code>optional int32 ac220 = 16;</code>
+       */
+      public boolean hasAc220() {
+        return ((bitField0_ & 0x00008000) == 0x00008000);
+      }
+      /**
+       * <code>optional int32 ac220 = 16;</code>
+       */
+      public int getAc220() {
+        return ac220_;
+      }
+      /**
+       * <code>optional int32 ac220 = 16;</code>
+       */
+      public Builder setAc220(int value) {
+        bitField0_ |= 0x00008000;
+        ac220_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 ac220 = 16;</code>
+       */
+      public Builder clearAc220() {
+        bitField0_ = (bitField0_ & ~0x00008000);
+        ac220_ = 0;
+        
+        return this;
+      }
+
+      private int battery_ ;
+      /**
+       * <code>optional int32 battery = 17;</code>
+       */
+      public boolean hasBattery() {
+        return ((bitField0_ & 0x00010000) == 0x00010000);
+      }
+      /**
+       * <code>optional int32 battery = 17;</code>
+       */
+      public int getBattery() {
+        return battery_;
+      }
+      /**
+       * <code>optional int32 battery = 17;</code>
+       */
+      public Builder setBattery(int value) {
+        bitField0_ |= 0x00010000;
+        battery_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 battery = 17;</code>
+       */
+      public Builder clearBattery() {
+        bitField0_ = (bitField0_ & ~0x00010000);
+        battery_ = 0;
+        
+        return this;
+      }
+
+      private int solar_ ;
+      /**
+       * <code>optional int32 solar = 18;</code>
+       */
+      public boolean hasSolar() {
+        return ((bitField0_ & 0x00020000) == 0x00020000);
+      }
+      /**
+       * <code>optional int32 solar = 18;</code>
+       */
+      public int getSolar() {
+        return solar_;
+      }
+      /**
+       * <code>optional int32 solar = 18;</code>
+       */
+      public Builder setSolar(int value) {
+        bitField0_ |= 0x00020000;
+        solar_ = value;
+        
+        return this;
+      }
+      /**
+       * <code>optional int32 solar = 18;</code>
+       */
+      public Builder clearSolar() {
+        bitField0_ = (bitField0_ & ~0x00020000);
+        solar_ = 0;
+        
+        return this;
+      }
+
+      private long pointtime_ ;
+      /**
+       * <code>optional uint64 pointtime = 19;</code>
+       */
+      public boolean hasPointtime() {
+        return ((bitField0_ & 0x00040000) == 0x00040000);
+      }
+      /**
+       * <code>optional uint64 pointtime = 19;</code>
        */
       public long getPointtime() {
         return pointtime_;
       }
       /**
-       * <code>optional uint64 pointtime = 7;</code>
+       * <code>optional uint64 pointtime = 19;</code>
        */
       public Builder setPointtime(long value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00040000;
         pointtime_ = value;
         
         return this;
       }
       /**
-       * <code>optional uint64 pointtime = 7;</code>
+       * <code>optional uint64 pointtime = 19;</code>
        */
       public Builder clearPointtime() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00040000);
         pointtime_ = 0L;
         
         return this;
