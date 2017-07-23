@@ -15,8 +15,8 @@ public class GasEventProcessor implements MessageListener<GasHazelcast> {
     private InfluxdbService influxdbService;
     private ExecutorService executorService;
 
-    public GasEventProcessor(InfluxdbService influxdbService,int threadNum) {
-        System.out.println("threaadNumber is "+threadNum);
+    public GasEventProcessor(InfluxdbService influxdbService, int threadNum) {
+        System.out.println("threaadNumber is " + threadNum);
         this.influxdbService = influxdbService;
         executorService = Executors.newFixedThreadPool(threadNum);
     }
@@ -30,9 +30,9 @@ public class GasEventProcessor implements MessageListener<GasHazelcast> {
         //display(hazelcastEvent);
         GasEvent event = hazelcastEvent.getGasEvent();
         String tenantId = hazelcastEvent.getTenantId();
-        executorService.execute(new Consume(event,tenantId));
-//        influxdbService.writeToInfluxdb(event, "measurement" + tenantId);
-        System.out.println("write into influxdb successfully!!!=========================================");
+        executorService.execute(new Consume(event, tenantId));
+        int result = influxdbService.writeToInfluxdb(event, "measurement" + tenantId);
+        System.out.println("write into influxdb successfully!---> tenantId::" + tenantId + " result:" + result);
     }
 
     public void display(GasHazelcast hazelcastEvent) {

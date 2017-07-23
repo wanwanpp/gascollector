@@ -6,7 +6,7 @@
     <groupId>com.gasmonitor</groupId>
     <artifactId>gasmonitor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>com.gasmonitor</name>
     <description>com.gasmonitor project for Spring Boot</description>
