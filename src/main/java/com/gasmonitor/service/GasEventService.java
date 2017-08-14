@@ -47,8 +47,7 @@ public class GasEventService {
         display(event);
         GasHazelcast hazelcastEvent = new GasHazelcast();
         hazelcastEvent.setGasEvent(event);
-        String tenant = "";
-        tenant = map.get(event.getHardwareId());
+        String tenant = map.get(event.getHardwareId());
         logger.info("把收到的消息-->{} publish-->{},map-->{}", hazelcastEvent, tenant, map.toString());
         if (tenant != null) {
             hazelcastEvent.setTenantId(tenant);
@@ -67,9 +66,8 @@ public class GasEventService {
 
     //to display data
     public void display(GasEvent event) {
-        System.out.println("================================================================================The received even is :");
-        System.out.println("The received even is :");
-        System.out.println(event);
+        logger.info("================================================================================The received even is :");
+        logger.info("The received even is :{}", event);
     }
 
     public void mockHazelcastMap() {

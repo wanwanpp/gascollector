@@ -56,7 +56,7 @@ public class HazelcastCacheConfig {
         Config config = new Config();
         config.setInstanceName("hazelcastInstance");
 
-        GasEventProcessor processor = new GasEventProcessor(influxdbService,threadNum);
+        GasEventProcessor processor = new GasEventProcessor(influxdbService, threadNum);
         ListenerConfig listenerConfig = new ListenerConfig(processor);
         List<ListenerConfig> listenerConfigList = new ArrayList<ListenerConfig>();
         listenerConfigList.add(listenerConfig);

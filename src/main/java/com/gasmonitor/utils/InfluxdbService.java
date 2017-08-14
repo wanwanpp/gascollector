@@ -8,6 +8,8 @@ import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
 import org.influxdb.dto.Query;
 import org.influxdb.dto.QueryResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.sql.Timestamp;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class InfluxdbService {
+    private Logger log = LoggerFactory.getLogger(InfluxdbService.class);
     @Value("${datastore.url}")
     String url;
     @Value("${datastore.dbName}")
@@ -29,7 +32,8 @@ public class InfluxdbService {
     @Value("${datastore.batchNum}")
     int batchNum;
 
-    InfluxDB influxDB;// = InfluxDBFactory.connect(url, user, password);
+
+    InfluxDB influxDB;//= InfluxDBFactory.connect(url, user, password);
     BatchPoints batchPoints;
 
 
@@ -59,7 +63,7 @@ public class InfluxdbService {
                 .addField("solar", e.getSolar())
                 .tag("hardwareId", e.getHardwareId())
                 .build();
-        System.out.println("The point is " + point);
+        log.info("The point is {}", point);
 
         batchPoints = BatchPoints
                 .database(dbName)
@@ -92,6 +96,7 @@ public class InfluxdbService {
                 event.setHardwareId(hardwareId);
 
                 List<Object> fieldList = objList.get(i);
+//                log.info("查询到的objlist:{}", objList);
                 String splitStr = (String) fieldList.get(0);
                 splitStr = splitStr.replace('T', ' ');
                 splitStr = splitStr.substring(0, splitStr.length() - 1);
@@ -146,6 +151,8 @@ public class InfluxdbService {
 
     //init
     public void initPara(String url1, String dbName1, String user1, String password1, String retention1, int batchNum1) {
+        log.info("开始初始化 influxdb的参数url1:{},dbName1:{},muser1:{},password1:{}.retention1:{},batchNum1:{}",
+                url1, dbName1, user1, password1, retention1, batchNum1);
         url = url1;
         dbName = dbName1;
         user = user1;

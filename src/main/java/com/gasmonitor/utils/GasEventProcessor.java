@@ -4,6 +4,8 @@ import com.gasmonitor.entity.GasEvent;
 import com.gasmonitor.entity.GasHazelcast;
 import com.hazelcast.core.Message;
 import com.hazelcast.core.MessageListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,13 +14,14 @@ import java.util.concurrent.Executors;
  */
 public class GasEventProcessor implements MessageListener<GasHazelcast> {
 
+    private Logger log = LoggerFactory.getLogger(GasEventProcessor.class);
     private InfluxdbService influxdbService;
     private ExecutorService executorService;
 
     public GasEventProcessor(InfluxdbService influxdbService, int threadNum) {
-        System.out.println("threaadNumber is " + threadNum);
+        log.info("threaadNumber is :{}", threadNum);
         this.influxdbService = influxdbService;
-        executorService = Executors.newFixedThreadPool(threadNum);
+        this.executorService = Executors.newFixedThreadPool(threadNum);
     }
 
     /**
@@ -27,23 +30,16 @@ public class GasEventProcessor implements MessageListener<GasHazelcast> {
     @Override
     public void onMessage(Message<GasHazelcast> arg0) {
         GasHazelcast hazelcastEvent = arg0.getMessageObject();
-        //display(hazelcastEvent);
         GasEvent event = hazelcastEvent.getGasEvent();
         String tenantId = hazelcastEvent.getTenantId();
-        executorService.execute(new Consume(event, tenantId));
-        int result = influxdbService.writeToInfluxdb(event, "measurement" + tenantId);
-        System.out.println("write into influxdb successfully!---> tenantId::" + tenantId + " result:" + result);
+//        executorService.execute(new Consume(event, tenantId));
+
+        //同步写入
+        influxdbService.writeToInfluxdb(event, "measurement" + tenantId);
     }
 
-    public void display(GasHazelcast hazelcastEvent) {
-        System.out.println("The listener received data......................................");
-        System.out.println("the tenant id is " + hazelcastEvent.getTenantId());
-        GasEvent event = hazelcastEvent.getGasEvent();
-        System.out.println(event);
-    }
-
+    //异步写
     public class Consume implements Runnable {
-
         private GasEvent event;
         private String tenantId;
 

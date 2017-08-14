@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.gasmonitor</groupId>
-    <artifactId>gasmonitor</artifactId>
+    <artifactId>gascollector</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 

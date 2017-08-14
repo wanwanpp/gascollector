@@ -32,9 +32,11 @@ public class EventController {
     }
 
     @RequestMapping(path = "/query", method = {RequestMethod.POST})
+    @ResponseBody
     public List<GasEvent> queryEvents(
             @RequestParam(value = "hardwareId", required = true) String hardwareId,
-            @RequestParam(value = "begin", required = true) long begin, @RequestParam(value = "end", required = true) long end) throws Exception {
+            @RequestParam(value = "begin", required = true) long begin,
+            @RequestParam(value = "end", required = true) long end) throws Exception {
 
         List<GasEvent> events = service.query(hardwareId, begin, end);
 
