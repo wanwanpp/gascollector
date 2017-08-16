@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +44,8 @@ public class GasEventService {
 
     }
 
-    public int process(GasEvent event) throws Exception {
+    @Async
+    public Integer process(GasEvent event) throws Exception {
         display(event);
         GasHazelcast hazelcastEvent = new GasHazelcast();
         hazelcastEvent.setGasEvent(event);
