@@ -4,6 +4,7 @@ import com.gasmonitor.utils.GasEventProcessor;
 import com.gasmonitor.utils.InfluxdbService;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.ListenerConfig;
+import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.config.TopicConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,6 +56,10 @@ public class HazelcastCacheConfig {
 
         Config config = new Config();
         config.setInstanceName("hazelcastInstance");
+        config.setProperty("hazelcast.initial.min.cluster.size","2");
+        NetworkConfig networkConfig = new NetworkConfig();
+        networkConfig.setPublicAddress("0.0.0.0");
+        config.setNetworkConfig(networkConfig);
 
         GasEventProcessor processor = new GasEventProcessor(influxdbService, threadNum);
         ListenerConfig listenerConfig = new ListenerConfig(processor);
