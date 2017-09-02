@@ -15,11 +15,4 @@ public class RestApiDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(RestApiDemoApplication.class, args);
     }
-    /*
-    @Bean
-	public HazelcastInstance hazelcastInstance(){
-            ClientConfig config=new ClientConfig();
-            HazelcastInstance instance=HazelcastClient.newHazelcastClient(config);
-		return instance;
-		};*/
 }
