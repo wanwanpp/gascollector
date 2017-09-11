@@ -7,6 +7,7 @@ import com.gasmonitor.utils.InfluxdbService;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.hazelcast.core.ITopic;
+import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,9 @@ public class GasEventService {
     private Logger logger = LoggerFactory.getLogger(GasEventService.class);
 
     @Autowired
-    HazelcastInstance hazelcastInstance;
+    private HazelcastInstance hazelcastInstance;
     @Autowired
-    InfluxdbService influxdbService;
-
+    private InfluxdbService influxdbService;
     private ITopic<GasHazelcast> topic;
     private IMap<String, String> map;
     private String topicName = "gasEvent";
@@ -39,9 +39,6 @@ public class GasEventService {
     public void initContext() {
         topic = hazelcastInstance.getTopic(topicName);
         map = hazelcastInstance.getMap("tenant");
-//delete this line before online 
-//        mockHazelcastMap();
-
     }
 
     @Async
