@@ -19,8 +19,8 @@ public class GasEvent implements Serializable {
     private int switch3;
     private int switch4;
     private int ac220;//
-    private int battery;
-    private int solar;
+    private double battery;
+    private double solar;
     private long pointtime;//测点时间
 
     public String getHardwareId() {
@@ -151,19 +151,19 @@ public class GasEvent implements Serializable {
         this.ac220 = ac220;
     }
 
-    public int getBattery() {
+    public double getBattery() {
         return battery;
     }
 
-    public void setBattery(int battery) {
+    public void setBattery(double battery) {
         this.battery = battery;
     }
 
-    public int getSolar() {
+    public double getSolar() {
         return solar;
     }
 
-    public void setSolar(int solar) {
+    public void setSolar(double solar) {
         this.solar = solar;
     }
 

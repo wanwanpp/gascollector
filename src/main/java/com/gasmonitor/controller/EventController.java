@@ -1,6 +1,7 @@
 package com.gasmonitor.controller;
 
 import com.gasmonitor.entity.GasEvent;
+import com.gasmonitor.entity.GasEventC;
 import com.gasmonitor.service.GasEventService;
 import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
@@ -36,7 +37,7 @@ public class EventController {
     }
 
     @RequestMapping(path = "/new2", method = {RequestMethod.POST})
-    public Object addEvent2(GasEvent event, HttpServletRequest request) throws Exception {
+    public Object addEvent2(GasEventC event, HttpServletRequest request) throws Exception {
         log.info("attr:{}", MapUtils.toProperties(request.getParameterMap()).toString());
         log.info("接收到的event:{}", event);
         log.info("接收到的硬件id为:{}", event.getHardwareId());
@@ -44,7 +45,7 @@ public class EventController {
             if (StringUtils.isEmpty(event.getHardwareId())) {
                 return null;
             }
-            service.process(event);
+            service.process(event.trans2GasEvent());
         } catch (Exception ex) {
             log.error(ex.getMessage());
             throw ex;
