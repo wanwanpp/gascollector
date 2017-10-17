@@ -25,3 +25,11 @@ JDK1.8 tomcat8 influxdb 8080端口不被其他应用占用。如果采用mqtt通
 1、将GasService中的public void mockHazelcastMap()注释掉，此处是为了模拟设备归属租户建立的一个测试表，和实际情况不同！！！！！！
 
 2。在application.propeties中添加hazelcast，influxdb参数
+
+
+
+//打包
+mvn package -DskipTests
+
+//运行
+java -jar app --spring.profiles.active=jw

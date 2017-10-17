@@ -6,9 +6,10 @@ import java.text.SimpleDateFormat;
 
 
 public class GasEventC implements Serializable {
-    public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private String hardwareId;//设备id  hardwareId=00002112：DTUID，8位数字；
+    private String ver; //仪器id
+    private String addr;
     private double temperature;//温度 temperature=23.63：温度，-20～100；
     private double pressure;//压强 pressure=311.41：压力，4BYTE
     private double standard;//标况  standard=1160.22：标况，
@@ -19,18 +20,27 @@ public class GasEventC implements Serializable {
     private double analog2;//analog2=1.10：模拟量，4BYTE 双精度；
     private double analog3;//analog3=0.71：模拟量，4BYTE 双精度；
     private double analog4; //analog4=0.73：模拟量，4BYTE 双精度；
-    private String switch1;// switch1=关：开/关；
-    private String switch2;// switch2=关：开/关；
-    private String switch3;//switch3=关：开/关；
-    private String switch4;//switch4=关：开/关；
-    private String ac220;// ac220=有电/无电；
+    private int switch1;// switch1=关：开/关；
+    private int switch2;// switch2=关：开/关；
+    private int switch3;//switch3=关：开/关；
+    private int switch4;//switch4=关：开/关；
+    private int ac220;// ac220=有电/无电；
     private double battery;// battery=4.08，4BYTE;
     private double solar;//  solar=0.00:,4BYTE
     private String pointtime;//测点时间  pointtime=2017-10-10 20:33:28，有效时间
 
+    //构造设备id
     public GasEvent trans2GasEvent() {
         GasEvent ret = new GasEvent();
-        ret.setHardwareId(this.getHardwareId() + "");
+        if (this.getAddr().length() == 1) {
+            ret.setHardwareId(this.getHardwareId() + "00" + this.getAddr());
+        } else if (ver.length() == 2) {
+            ret.setHardwareId(this.getHardwareId() + "0" + this.getAddr());
+        } else if (ver.length() == 3) {
+            ret.setHardwareId(this.getHardwareId() + "" + this.getAddr());
+        } else {
+            ret.setHardwareId(this.getHardwareId() + "00" + this.getAddr());
+        }
         ret.setTemperature(this.getTemperature());
         ret.setPressure(this.getPressure());
         ret.setStandard(this.getStandard());
@@ -41,19 +51,68 @@ public class GasEventC implements Serializable {
         ret.setAnalog2(this.getAnalog2());
         ret.setAnalog3(this.getAnalog3());
         ret.setAnalog4(this.getAnalog4());
-
-        ret.setSwitch1(getswitch(getSwitch1()));
-        ret.setSwitch2(getswitch(getSwitch2()));
-        ret.setSwitch3(getswitch(getSwitch3()));
-        ret.setSwitch4(getswitch(getSwitch4()));
+        ret.setSwitch1(getSwitch1());
+        ret.setSwitch2(getSwitch2());
+        ret.setSwitch3(getSwitch3());
+        ret.setSwitch4(getSwitch4());
         ret.setBattery(this.getBattery());
         ret.setSolar(this.getSolar());
         try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             ret.setPointtime(dateFormat.parse(getPointtime()).getTime());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return ret;
+    }
+
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
+    public int getSwitch1() {
+        return switch1;
+    }
+
+    public void setSwitch1(int switch1) {
+        this.switch1 = switch1;
+    }
+
+    public int getSwitch2() {
+        return switch2;
+    }
+
+    public void setSwitch2(int switch2) {
+        this.switch2 = switch2;
+    }
+
+    public int getSwitch3() {
+        return switch3;
+    }
+
+    public void setSwitch3(int switch3) {
+        this.switch3 = switch3;
+    }
+
+    public int getSwitch4() {
+        return switch4;
+    }
+
+    public void setSwitch4(int switch4) {
+        this.switch4 = switch4;
+    }
+
+    public int getAc220() {
+        return ac220;
+    }
+
+    public void setAc220(int ac220) {
+        this.ac220 = ac220;
     }
 
     public String getHardwareId() {
@@ -145,51 +204,11 @@ public class GasEventC implements Serializable {
     }
 
     public int getswitch(String s) {
-        if (s.equalsIgnoreCase("开")) {
+        if ("开".equalsIgnoreCase(s)) {
             return 1;
         } else {
             return 0;
         }
-    }
-
-    public String getSwitch1() {
-        return switch1;
-    }
-
-    public void setSwitch1(String switch1) {
-        this.switch1 = switch1;
-    }
-
-    public String getSwitch2() {
-        return switch2;
-    }
-
-    public void setSwitch2(String switch2) {
-        this.switch2 = switch2;
-    }
-
-    public String getSwitch3() {
-        return switch3;
-    }
-
-    public void setSwitch3(String switch3) {
-        this.switch3 = switch3;
-    }
-
-    public String getSwitch4() {
-        return switch4;
-    }
-
-    public void setSwitch4(String switch4) {
-        this.switch4 = switch4;
-    }
-
-    public String getAc220() {
-        return ac220;
-    }
-
-    public void setAc220(String ac220) {
-        this.ac220 = ac220;
     }
 
     public double getBattery() {
@@ -216,10 +235,20 @@ public class GasEventC implements Serializable {
         this.pointtime = pointtime;
     }
 
+    public String getVer() {
+        return ver;
+    }
+
+    public void setVer(String ver) {
+        this.ver = ver;
+    }
+
     @Override
     public String toString() {
         return "GasEventC{" +
                 "hardwareId='" + hardwareId + '\'' +
+                ", ver='" + ver + '\'' +
+                ", addr='" + addr + '\'' +
                 ", temperature=" + temperature +
                 ", pressure=" + pressure +
                 ", standard=" + standard +
@@ -230,11 +259,11 @@ public class GasEventC implements Serializable {
                 ", analog2=" + analog2 +
                 ", analog3=" + analog3 +
                 ", analog4=" + analog4 +
-                ", switch1='" + switch1 + '\'' +
-                ", switch2='" + switch2 + '\'' +
-                ", switch3='" + switch3 + '\'' +
-                ", switch4='" + switch4 + '\'' +
-                ", ac220='" + ac220 + '\'' +
+                ", switch1=" + switch1 +
+                ", switch2=" + switch2 +
+                ", switch3=" + switch3 +
+                ", switch4=" + switch4 +
+                ", ac220=" + ac220 +
                 ", battery=" + battery +
                 ", solar=" + solar +
                 ", pointtime='" + pointtime + '\'' +
