@@ -56,9 +56,8 @@ public class HazelcastCacheConfig {
 
         Config config = new Config();
         config.setInstanceName("hazelcastInstance");
-//        config.setProperty("hazelcast.initial.min.cluster.size","2");
         NetworkConfig networkConfig = new NetworkConfig();
-        networkConfig.setPublicAddress("0.0.0.0");
+        networkConfig.setPublicAddress("localhost");
         config.setNetworkConfig(networkConfig);
 
         GasEventProcessor processor = new GasEventProcessor(influxdbService, threadNum);

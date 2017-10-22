@@ -47,7 +47,7 @@ public class GasEventService {
         GasHazelcast hazelcastEvent = new GasHazelcast();
         hazelcastEvent.setGasEvent(event);
         String tenant = map.get(event.getHardwareId());
-        logger.info("把收到的消息-->{} publish-->{},map-->{}", hazelcastEvent, tenant, map.toString());
+        logger.info("把收到的消息-->{} publish--> key:{}==>value:{},map-->{}", hazelcastEvent, event.getHardwareId(), tenant, map.toString());
         if (tenant != null) {
             hazelcastEvent.setTenantId(tenant);
             topic.publish(hazelcastEvent);
