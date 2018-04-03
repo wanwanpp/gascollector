@@ -1,7 +1,7 @@
 package com.gasmonitor;
 
-import com.gasmonitor.entity.GasEvent;
-import com.gasmonitor.utils.InfluxdbService;
+import com.gasmonitor.entity.GasEventOld;
+import com.gasmonitor.service.InfluxdbService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class RestApiDemoApplicationTests {
 
     @Test
     public void query() {
-//		List<GasEvent> eventList = influxdbService.query("999", "ID2", new Timestamp(System.currentTimeMillis() - 60 * 60 * 1000), new Timestamp(System.currentTimeMillis()));
-//		List<GasEvent> eventList = influxdbService.query("999", "ID2", System.currentTimeMillis() - 24*60 * 60 * 1000, System.currentTimeMillis());
-        List<GasEvent> eventList = influxdbService.query("999", "ID2", 0, System.currentTimeMillis());
+//		List<GasEventOld> eventList = influxdbService.query("999", "ID2", new Timestamp(System.currentTimeMillis() - 60 * 60 * 1000), new Timestamp(System.currentTimeMillis()));
+//		List<GasEventOld> eventList = influxdbService.query("999", "ID2", System.currentTimeMillis() - 24*60 * 60 * 1000, System.currentTimeMillis());
+        List<GasEventOld> eventList = influxdbService.query("999", "ID2", 0, System.currentTimeMillis());
         System.out.println(eventList.size());
     }
 

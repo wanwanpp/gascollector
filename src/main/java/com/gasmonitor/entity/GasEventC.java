@@ -30,8 +30,8 @@ public class GasEventC implements Serializable {
     private String pointtime;//测点时间  pointtime=2017-10-10 20:33:28，有效时间
 
     //构造设备id
-    public GasEvent trans2GasEvent() {
-        GasEvent ret = new GasEvent();
+    public GasEventOld trans2GasEvent() {
+        GasEventOld ret = new GasEventOld();
         if (this.getAddr().length() == 1) {
             ret.setHardwareId(this.getHardwareId() + "00" + this.getAddr());
         } else if (ver.length() == 2) {

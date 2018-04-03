@@ -1,7 +1,7 @@
 package com.gasmonitor.config;
 
 import com.gasmonitor.utils.GasEventProcessor;
-import com.gasmonitor.utils.InfluxdbService;
+import com.gasmonitor.service.InfluxdbService;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.ListenerConfig;
 import com.hazelcast.config.NetworkConfig;
@@ -38,19 +38,20 @@ public class HazelcastCacheConfig {
     @Value("${datastore.topicName}")
     private String topicName;
 
-    @Value("${influx.write.threadNum}")
-    private int threadNum;
-
     @Autowired
     InfluxdbService influxdbService;
 
     @Bean
-    InfluxdbService influxdbService() {
+    public InfluxdbService influxdbService() {
         InfluxdbService influxdbService = new InfluxdbService();
         influxdbService.initPara(url, dbName, userName, password, retention, batchNum);
         return influxdbService;
     }
 
+    /**
+     * Config配置给HazelcastInstance使用
+     * @return
+     */
     @Bean
     public Config hazelCastConfig() {
 
@@ -60,16 +61,15 @@ public class HazelcastCacheConfig {
         networkConfig.setPublicAddress("localhost");
         config.setNetworkConfig(networkConfig);
 
-        GasEventProcessor processor = new GasEventProcessor(influxdbService, threadNum);
+        GasEventProcessor processor = new GasEventProcessor(influxdbService);
         ListenerConfig listenerConfig = new ListenerConfig(processor);
         List<ListenerConfig> listenerConfigList = new ArrayList<ListenerConfig>();
         listenerConfigList.add(listenerConfig);
-        TopicConfig allEventsCache = new TopicConfig();
-        allEventsCache.setMessageListenerConfigs(listenerConfigList);
-        allEventsCache.setName("GasEvent");
-        config.getTopicConfigs().put(topicName, allEventsCache);
+        TopicConfig topicConfig = new TopicConfig();
+        topicConfig.setMessageListenerConfigs(listenerConfigList);
+        topicConfig.setName("GasEventOld");
+        config.getTopicConfigs().put(topicName, topicConfig);
 
         return config;
     }
-
 }

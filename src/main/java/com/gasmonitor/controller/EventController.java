@@ -1,13 +1,12 @@
 package com.gasmonitor.controller;
 
-import com.gasmonitor.entity.GasEvent;
+import com.gasmonitor.entity.GasEventOld;
 import com.gasmonitor.entity.GasEventC;
 import com.gasmonitor.service.GasEventService;
 import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +23,7 @@ public class EventController {
     GasEventService service;
 
     @RequestMapping(path = "/new", method = {RequestMethod.POST})
-    public Object addEvent(@RequestBody GasEvent event) throws Exception {
+    public Object addEvent(@RequestBody GasEventOld event) throws Exception {
 //    public Object addEvent(@RequestParam String event) throws Exception {
         try {
             service.process(event);
@@ -56,14 +55,11 @@ public class EventController {
 
     @RequestMapping(path = "/query", method = {RequestMethod.POST})
     @ResponseBody
-    public List<GasEvent> queryEvents(
+    public List<GasEventOld> queryEvents(
             @RequestParam(value = "hardwareId", required = true) String hardwareId,
             @RequestParam(value = "begin", required = true) long begin,
             @RequestParam(value = "end", required = true) long end) throws Exception {
-
-        List<GasEvent> events = service.query(hardwareId, begin, end);
-
+        List<GasEventOld> events = service.query(hardwareId, begin, end);
         return events;
     }
-
 }

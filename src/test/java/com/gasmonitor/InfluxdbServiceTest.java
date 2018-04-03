@@ -26,7 +26,7 @@ public class InfluxdbServiceTest {
     }
 
     /**
-     * Method: writeToInfluxdb(GasEvent e, String measurement)
+     * Method: writeToInfluxdb(GasEventOld e, String measurement)
      */
     @Test
     public void testWriteToInfluxdb() throws Exception {
@@ -53,6 +53,4 @@ public class InfluxdbServiceTest {
     public void testInitPara() throws Exception {
 //TODO: Test goes here... 
     }
-
-
 } 
