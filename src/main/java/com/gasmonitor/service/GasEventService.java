@@ -17,9 +17,6 @@ import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 import java.util.List;
 
-//--11
-
-//--20
 @Service
 @ConfigurationProperties(prefix = "event")
 public class GasEventService {
